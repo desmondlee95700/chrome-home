@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Local Claude Code settings
+.claude/
+
+# Packaged builds
+*.zip
+*.crx
+*.pem

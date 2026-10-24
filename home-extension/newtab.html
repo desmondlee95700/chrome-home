@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home</title>
+  <link rel="icon" type="image/png" href="icons/icon32.png">
+  <link rel="stylesheet" href="newtab.css">
+</head>
+<body>
+  <div class="stage" id="stage"></div>
+
+  <header class="topbar">
+    <nav class="tabs">
+      <span class="tab active">Sites</span>
+    </nav>
+    <div class="status">
+      <button class="icon-btn" id="searchBtn" title="Search ( / )">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </button>
+      <button class="icon-btn" id="settingsBtn" title="Settings">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+      </button>
+      <div class="profile">
+        <button class="avatar" id="avatar" title="Profile"></button>
+        <div class="menu profile-menu" id="profileMenu" hidden>
+          <div class="who">
+            <div class="who-name" id="whoName"></div>
+            <div class="who-email" id="whoEmail"></div>
+          </div>
+          <button id="signInBtn">Use my Google account</button>
+          <button id="signOutBtn" hidden>Disconnect Google account</button>
+          <p class="menu-note" id="signInNote" hidden></p>
+        </div>
+      </div>
+      <div class="time" id="clock">--:--</div>
+    </div>
+  </header>
+
+  <main>
+    <section id="sitesView">
+      <div class="tiles" id="tiles"></div>
+
+      <div class="hero">
+        <div class="kicker"><span class="kicker-line"></span><span id="heroKicker"></span></div>
+        <h1 class="hero-title" id="heroTitle"></h1>
+        <div class="hero-meta">
+          <span class="chip" id="heroSub"></span>
+          <span class="chip chip-soft" id="heroMeta" hidden></span>
+        </div>
+        <div class="hero-actions">
+          <button class="btn-primary" id="openBtn">
+            <svg id="openIcon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg>
+            <span id="openLabel">Open</span>
+          </button>
+          <div class="more">
+            <button class="btn-round" id="moreBtn" title="Options (O)" aria-haspopup="menu">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+            </button>
+            <div class="menu options-menu" id="menu" role="menu" hidden>
+              <div class="menu-title" id="menuTitle"></div>
+              <button role="menuitem" id="renameBtn">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                <span>Rename or edit link</span>
+              </button>
+              <button role="menuitem" id="bgBtn">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+                <span>Change background</span>
+              </button>
+              <div class="menu-sep"></div>
+              <button role="menuitem" id="removeBtn" class="danger">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg>
+                <span>Remove from home</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="preview-cta" id="previewCta" hidden>
+          <span>Show real previews of your sites as backgrounds</span>
+          <button id="previewCtaBtn">Turn on</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="hints">
+    <span><kbd>←</kbd><kbd>→</kbd> Move</span>
+    <span><kbd>Enter</kbd> Open</span>
+    <span><kbd>O</kbd> Options</span>
+    <span><kbd>/</kbd> Search</span>
+  </footer>
+
+  <div class="search-overlay" id="searchOverlay" hidden>
+    <div class="search-box">
+      <form class="search" id="search">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="q" type="text" placeholder="Search the web or your sites" autocomplete="off" spellcheck="false"
+               role="combobox" aria-controls="suggestions" aria-expanded="false">
+      </form>
+      <ul class="suggestions" id="suggestions" role="listbox" hidden></ul>
+    </div>
+  </div>
+
+  <dialog id="settings" class="sheet">
+    <form method="dialog">
+      <header class="sheet-head">
+        <h2>Settings</h2>
+        <button value="cancel" type="submit" class="close-x" aria-label="Close" formnovalidate>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </header>
+
+      <div class="profile-card">
+        <div class="avatar avatar-lg" id="setAvatar"></div>
+        <div class="profile-text">
+          <div class="profile-name" id="setName"></div>
+          <div class="profile-email" id="setEmail"></div>
+        </div>
+      </div>
+
+      <div class="group-label">Display</div>
+      <div class="group">
+        <label class="row">
+          <span class="row-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
+          <span class="row-text">
+            <span class="row-title">24-hour clock</span>
+            <span class="row-sub" id="clockSample"></span>
+          </span>
+          <input id="clock24" type="checkbox" class="switch">
+        </label>
+      </div>
+
+      <div id="liveRow" hidden>
+        <div class="group-label">Backgrounds</div>
+        <div class="group">
+          <label class="row">
+            <span class="row-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+            </span>
+            <span class="row-text">
+              <span class="row-title">Live previews</span>
+              <span class="row-sub">When you open one of your sites, save a snapshot of the page and use it as that tile's background, so you see your real feed. Snapshots stay on this computer and refresh at most every 10 minutes.</span>
+            </span>
+            <input id="livePreviews" type="checkbox" class="switch">
+          </label>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button value="cancel" type="submit" class="secondary">Cancel</button>
+        <button value="save" type="submit">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="addShortcut">
+    <form method="dialog" id="shortcutForm">
+      <h2 id="scTitle">Add to home</h2>
+      <label>Name <input id="scName" type="text" required></label>
+      <label>URL <input id="scUrl" type="text" placeholder="https://example.com" required></label>
+      <div class="actions">
+        <button value="cancel" type="submit" class="secondary" formnovalidate>Cancel</button>
+        <button value="save" type="submit" id="scSave">Add</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="bgDialog">
+    <form method="dialog" id="bgForm">
+      <h2>Background for <span id="bgFor"></span></h2>
+      <label>Upload an image
+        <input id="bgFile" type="file" accept="image/*">
+      </label>
+      <label>…or paste an image link
+        <input id="bgUrl" type="text" placeholder="https://example.com/wallpaper.jpg">
+      </label>
+      <div class="actions">
+        <button value="reset" type="submit" class="secondary push-left">Use default</button>
+        <button value="cancel" type="submit" class="secondary">Cancel</button>
+        <button value="save" type="submit">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="newtab.js"></script>
+</body>
+</html>

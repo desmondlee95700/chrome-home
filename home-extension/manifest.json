@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "My Home",
+  "version": "1.2.0",
+  "description": "A personal home page for every new tab.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["storage", "unlimitedStorage", "search", "identity", "identity.email"],
+  "host_permissions": [
+    "https://suggestqueries.google.com/*",
+    "https://www.google.com/s2/favicons*",
+    "https://*.gstatic.com/*"
+  ],
+  "optional_host_permissions": ["<all_urls>", "https://accounts.google.com/*"],
+  "oauth2": {
+    "client_id": "YOUR_CLIENT_ID.apps.googleusercontent.com",
+    "scopes": ["openid", "email", "profile"]
+  }
+}
